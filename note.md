@@ -10,6 +10,12 @@ private: 只能内部访问，继承合约都不能访问。
 
 声明为 public 的状态变量，相当于是一个同名的 getter 函数，可以直接用 c.b() 访问。
 
+Solidity 0.4.16 added two new specifiers for contract functions: pure and view. Solidity 0.4.17 adds the ability to enforce those specifiers—if you attempt to read or write to storage or log events in the body of a function that claims not to do so, your contract will not compile. This is disabled by default for backwards compatibility.
+
+pure was introduced to specify functions that do not read or modify the state of the blockchain, like math functions.
+
+view was introduced to specify functions that can read, but can never modify the state of the blockchain. view is an alias for constant, an existing specifier that was not enforced by the compiler.
+
 ### 回退函数 fallback function
 
 一个合约可以有唯一的未命名函数, 不能有实参，不能返回任何值。
@@ -113,3 +119,8 @@ this
 selfdetruct: 销毁当前合约，并把其中的资金发送到指定地址
 
 ### 存在，真实性，所有权合约的证明
+
+## 编译
+命令行 solc 编译器
+solcjs
+Browser Solidity
