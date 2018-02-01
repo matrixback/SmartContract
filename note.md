@@ -124,3 +124,24 @@ selfdetruct: 销毁当前合约，并把其中的资金发送到指定地址
 命令行 solc 编译器
 solcjs
 Browser Solidity
+
+## 函数返回值
+
+函数可以返回静态数组，不可以返回动态数组？
+
+    pragma solidity ^0.4.17;
+    
+    contract Adoption {
+        address[16] public adopters;
+    
+        function adopt(uint petId) public returns(uint) {
+            require(petId >= 0 && petId <= 15);
+    
+            adopters[petId] = msg.sender;
+            return petId;
+        }
+    
+        function getAdopeters() public view returns (address[16]) {
+            return adopters;
+        }
+    }
